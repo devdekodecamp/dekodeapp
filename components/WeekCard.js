@@ -251,17 +251,17 @@ export default function WeekCard({ week }) {
               </div>
 
               {proofPreview && (
-                <div className="mt-4">
-                  <p className="text-sm font-medium text-gray-700 mb-2">
-                    Preview:
-                  </p>
-                  <img
-                    src={proofPreview}
-                    alt="Proof preview"
-                    className="w-full h-auto rounded-lg border border-gray-300"
-                  />
-                </div>
-              )}
+  <div className="mt-4 max-h-96 overflow-auto border border-gray-200 rounded-lg bg-gray-50 flex flex-col items-center justify-center">
+    <p className="text-sm font-medium text-gray-700 mb-2 w-full px-3 pt-3">
+      Preview:
+    </p>
+    <img
+      src={proofPreview}
+      alt="Proof preview"
+      className="max-h-80 w-auto object-contain rounded-lg border border-gray-300 block mx-auto px-3 pb-3"
+    />
+  </div>
+)}
 
               {proofFile && (
                 <div className="mt-4 p-3 bg-gray-50 rounded-lg">

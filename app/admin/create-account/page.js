@@ -110,10 +110,10 @@ export default function CreateAccount() {
                     >
                       {emailStatus.sent ? (
                         <div className="flex items-center space-x-2">
-                          <CheckCircle className="w-5 h-5 text-green-600" />
-                          <p className="text-green-800 font-medium">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <p className="text-green-800 font-medium">
                             Welcome email sent successfully to the user.
-                          </p>
+                  </p>
                         </div>
                       ) : (
                         <div>

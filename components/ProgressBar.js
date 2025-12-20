@@ -23,3 +23,4 @@ export default function ProgressBar({ progress = 0, total = 6 }) {
   )
 }
 
+

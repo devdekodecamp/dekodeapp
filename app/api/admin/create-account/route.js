@@ -94,10 +94,7 @@ export async function POST(request) {
     if (resend) {
       try {
         // Get the base URL for the login page
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
-                       (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
-        
-        const loginUrl = `${baseUrl}/`
+        const loginUrl = "https://dekodeapp.vercel.app/"
 
         // eslint-disable-next-line no-console
         console.log('[CREATE ACCOUNT] Sending email to:', email, 'from noreply@dekodecamp.com')

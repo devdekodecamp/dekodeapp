@@ -108,6 +108,13 @@ export default function VerifyProofs() {
         </span>
       );
     }
+    if (status === "rejected") {
+      return (
+        <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+          Rejected
+        </span>
+      );
+    }
     return (
       <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
         Pending
@@ -242,6 +249,18 @@ export default function VerifyProofs() {
                     </p>
                     <p className="text-2xl font-bold text-gray-900">
                       {proofs.filter((p) => p.status === "pending").length}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Verified</p>
+                    <p className="text-2xl font-bold text-green-600">
+                      {proofs.filter((p) => p.status === "verified").length}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Rejected</p>
+                    <p className="text-2xl font-bold text-red-600">
+                      {proofs.filter((p) => p.status === "rejected").length}
                     </p>
                   </div>
                   <div>

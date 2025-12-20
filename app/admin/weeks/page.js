@@ -21,6 +21,8 @@ export default function WeeksCMS() {
     video_url: '',
     module_link: '',
     thumbnail_url: '',
+    primary_text: '',
+    secondary_text: '',
     is_published: true,
   }
 
@@ -145,6 +147,8 @@ export default function WeeksCMS() {
         video_url: week.video_url || null,
         module_link: week.module_link || null,
         thumbnail_url: week.thumbnail_url || null,
+        primary_text: week.primary_text || null,
+        secondary_text: week.secondary_text || null,
         is_published: !!week.is_published,
       }
 
@@ -264,6 +268,12 @@ export default function WeeksCMS() {
                     Google Drive / Video URL
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Primary Text
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Secondary Text
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Published
                   </th>
                   <th className="px-4 py-3" />
@@ -272,7 +282,7 @@ export default function WeeksCMS() {
               <tbody className="divide-y divide-gray-200">
                 {loading && weeks.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="px-4 py-6 text-center text-gray-500">
+                    <td colSpan={9} className="px-4 py-6 text-center text-gray-500">
                       Loading weeks...
                     </td>
                   </tr>
@@ -338,6 +348,25 @@ export default function WeeksCMS() {
                       </p>
                     </td>
                     <td className="px-4 py-3 align-top">
+                      <textarea
+                        className="w-64 px-2 py-1 text-sm rounded border border-gray-300 bg-white text-gray-900 min-h-[80px]"
+                        value={week.primary_text ?? ''}
+                        onChange={(e) => handleFieldChange(index, 'primary_text', e.target.value)}
+                        placeholder="Primary text content"
+                      />
+                    </td>
+                    <td className="px-4 py-3 align-top">
+                      <textarea
+                        className="w-64 px-2 py-1 text-sm rounded border border-gray-300 bg-white text-gray-900 min-h-[80px]"
+                        value={week.secondary_text ?? ''}
+                        onChange={(e) => handleFieldChange(index, 'secondary_text', e.target.value)}
+                        placeholder="Secondary text (bullet points)"
+                      />
+                      <p className="mt-1 text-[11px] text-gray-500">
+                        Use bullet points separated by new lines
+                      </p>
+                    </td>
+                    <td className="px-4 py-3 align-top">
                       <input
                         type="checkbox"
                         checked={!!week.is_published}
@@ -368,7 +397,7 @@ export default function WeeksCMS() {
                 ))}
                 {!loading && weeks.length === 0 && (
                   <tr>
-                    <td colSpan={7} className="px-4 py-6 text-center text-gray-500">
+                    <td colSpan={9} className="px-4 py-6 text-center text-gray-500">
                       No weeks configured yet. Click &quot;Add Week&quot; to create one.
                     </td>
                   </tr>

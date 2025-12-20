@@ -23,6 +23,8 @@ export async function PATCH(request, { params }) {
       module_link,
       drive_embed_url,
       thumbnail_url,
+      primary_text,
+      secondary_text,
       is_published,
     } = body
 
@@ -34,6 +36,8 @@ export async function PATCH(request, { params }) {
     if (module_link !== undefined) updateData.module_link = module_link || null
     if (drive_embed_url !== undefined) updateData.drive_embed_url = drive_embed_url || null
     if (thumbnail_url !== undefined) updateData.thumbnail_url = thumbnail_url || null
+    if (primary_text !== undefined) updateData.primary_text = primary_text || null
+    if (secondary_text !== undefined) updateData.secondary_text = secondary_text || null
     if (is_published !== undefined) updateData.is_published = Boolean(is_published)
 
     const { data, error } = await supabase

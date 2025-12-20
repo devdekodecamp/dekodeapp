@@ -50,6 +50,8 @@ export async function POST(request) {
       module_link,
       drive_embed_url,
       thumbnail_url,
+      primary_text,
+      secondary_text,
       is_published,
     } = body
 
@@ -69,6 +71,8 @@ export async function POST(request) {
         module_link: module_link || null,
         drive_embed_url: drive_embed_url || null,
         thumbnail_url: thumbnail_url || null,
+        primary_text: primary_text || null,
+        secondary_text: secondary_text || null,
         is_published: is_published !== undefined ? Boolean(is_published) : true,
       })
       .select()

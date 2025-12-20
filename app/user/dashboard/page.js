@@ -64,6 +64,8 @@ export default function UserDashboard() {
             videoUrl: w.video_url,
             moduleLink: w.module_link,
             thumbnailUrl: w.thumbnail_url,
+            primaryText: w.primary_text,
+            secondaryText: w.secondary_text,
             completed: false,
             verified: false,
           }));

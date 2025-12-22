@@ -185,7 +185,7 @@ export default function ModuleDetailPage() {
                     href={module.moduleLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] hover:opacity-90 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
                   >
                     <ExternalLink className="w-5 h-5" />
                     <span>Open Module Link</span>

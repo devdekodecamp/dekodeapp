@@ -89,3 +89,4 @@ dashboard-app/
 - UI is fully responsive and supports dark mode
 - Focus is on UI/UX - backend integration pending
 
+

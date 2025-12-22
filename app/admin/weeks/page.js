@@ -18,6 +18,7 @@ export default function WeeksCMS() {
     id: null,
     week_number: '',
     title: '',
+    start_date: '',
     video_url: '',
     module_link: '',
     thumbnail_url: '',
@@ -144,6 +145,7 @@ export default function WeeksCMS() {
       const payload = {
         week_number: Number(week.week_number),
         title: week.title,
+        start_date: week.start_date || null,
         video_url: week.video_url || null,
         module_link: week.module_link || null,
         thumbnail_url: week.thumbnail_url || null,
@@ -235,7 +237,7 @@ export default function WeeksCMS() {
             <button
               type="button"
               onClick={addNewRow}
-              className="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] hover:opacity-90 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
             >
               <Plus className="w-5 h-5" />
               <span>Add Week</span>
@@ -257,6 +259,9 @@ export default function WeeksCMS() {
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Title
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Start Date
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Thumbnail
@@ -304,6 +309,14 @@ export default function WeeksCMS() {
                         value={week.title ?? ''}
                         onChange={(e) => handleFieldChange(index, 'title', e.target.value)}
                         placeholder="Week title"
+                      />
+                    </td>
+                    <td className="px-4 py-3 align-top">
+                      <input
+                        type="date"
+                        className="w-40 px-2 py-1 text-sm rounded border border-gray-300 bg-white text-gray-900"
+                        value={week.start_date ?? ''}
+                        onChange={(e) => handleFieldChange(index, 'start_date', e.target.value)}
                       />
                     </td>
                     <td className="px-4 py-3 align-top">
@@ -377,7 +390,7 @@ export default function WeeksCMS() {
                       <button
                         type="button"
                         onClick={() => saveWeek(week, index)}
-                        className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] hover:opacity-90 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={savingId !== null}
                       >
                         <Save className="w-4 h-4 mr-1" />

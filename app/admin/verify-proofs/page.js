@@ -153,7 +153,7 @@ export default function VerifyProofs() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center">
+                      <div className="w-10 h-10 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] rounded-full flex items-center justify-center">
                         <User className="w-6 h-6 text-white" />
                       </div>
                       <div>

@@ -19,6 +19,7 @@ export async function PATCH(request, { params }) {
     const {
       week_number,
       title,
+      start_date,
       video_url,
       module_link,
       drive_embed_url,
@@ -32,6 +33,7 @@ export async function PATCH(request, { params }) {
 
     if (week_number !== undefined) updateData.week_number = Number(week_number)
     if (title !== undefined) updateData.title = title
+    if (start_date !== undefined) updateData.start_date = start_date || null
     if (video_url !== undefined) updateData.video_url = video_url || null
     if (module_link !== undefined) updateData.module_link = module_link || null
     if (drive_embed_url !== undefined) updateData.drive_embed_url = drive_embed_url || null

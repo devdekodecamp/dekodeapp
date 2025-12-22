@@ -141,7 +141,7 @@ export default function AllUsers() {
                     <tr key={user.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center mr-3">
+                          <div className="w-10 h-10 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] rounded-full flex items-center justify-center mr-3">
                             <User className="w-6 h-6 text-white" />
                           </div>
                           <div>

@@ -61,6 +61,7 @@ export default function UserDashboard() {
           .map((w) => ({
             id: w.week_number,
             title: w.title,
+            startDate: w.start_date,
             videoUrl: w.video_url,
             moduleLink: w.module_link,
             thumbnailUrl: w.thumbnail_url,

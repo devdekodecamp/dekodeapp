@@ -46,6 +46,7 @@ export async function POST(request) {
     const {
       week_number,
       title,
+      start_date,
       video_url,
       module_link,
       drive_embed_url,
@@ -67,6 +68,7 @@ export async function POST(request) {
       .insert({
         week_number: Number(week_number),
         title,
+        start_date: start_date || null,
         video_url: video_url || null,
         module_link: module_link || null,
         drive_embed_url: drive_embed_url || null,

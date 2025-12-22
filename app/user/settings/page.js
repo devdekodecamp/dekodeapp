@@ -213,7 +213,7 @@ export default function UserSettings() {
                   <button
                     type="submit"
                   disabled={profileLoading}
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] hover:opacity-90 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                   {profileLoading ? 'Updating...' : 'Update Profile'}
                   </button>
@@ -296,7 +296,7 @@ export default function UserSettings() {
                   <button
                     type="submit"
                   disabled={passwordLoading}
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] hover:opacity-90 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                   {passwordLoading ? 'Updating...' : 'Update Password'}
                   </button>

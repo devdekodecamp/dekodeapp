@@ -94,16 +94,16 @@ export async function POST(request) {
     if (resend) {
       try {
         // Get the base URL for the login page
-        const loginUrl = "https://dekodeapp.vercel.app/"
+        const loginUrl = "https://app.dekodecamp.com"
 
         // eslint-disable-next-line no-console
-        console.log('[CREATE ACCOUNT] Sending email to:', email, 'from noreply@dekodecamp.com')
+          console.log('[CREATE ACCOUNT] Sending email to:', email, 'from noreply@dekodecamp.com')
         
         // Create plain text version for better deliverability
         const textVersion = `
 Welcome, ${name}!
 
-Your account has been successfully created for DekodeCamp. You can now access the platform using the credentials below:
+Your account has been successfully created for Dekode Camp. You can now access the platform using the credentials below:
 
 Email: ${email}
 Temporary Password: ${password}
@@ -115,13 +115,13 @@ IMPORTANT: Please change your temporary password after logging in for security p
 If you have any questions, please contact support at support@dekodecamp.com.
 
 Best regards,
-The DekodeCamp Team
+The Dekode Camp Team
         `.trim()
 
         const emailResult = await resend.emails.send({
-          from: 'DekodeCamp <noreply@dekodecamp.com>',
+          from: 'Dekode Camp <noreply@dekodecamp.com>',
           to: [email],
-          subject: 'Welcome to DekodeCamp - Your Account Has Been Created',
+          subject: 'Welcome to Dekode Camp - Your Account Has Been Created',
           replyTo: 'support@dekodecamp.com',
           text: textVersion,
           html: `
@@ -139,7 +139,7 @@ The DekodeCamp Team
                       <!-- Header -->
                       <tr>
                         <td style="padding: 40px 40px 30px; background-color: #4F46E5; text-align: center;">
-                          <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Welcome to DekodeCamp</h1>
+                          <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Welcome to Dekode Camp</h1>
                         </td>
                       </tr>
                       
@@ -151,7 +151,7 @@ The DekodeCamp Team
                           </p>
                           
                           <p style="margin: 0 0 30px; color: #374151; font-size: 16px; line-height: 1.6;">
-                            Your account has been successfully created. You can now access the DekodeCamp platform using the credentials below:
+                            Your account has been successfully created. You can now access the Dekode Camp platform using the credentials below:
                           </p>
                           
                           <!-- Credentials Box -->

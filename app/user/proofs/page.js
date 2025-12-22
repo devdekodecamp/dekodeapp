@@ -176,7 +176,7 @@ export default function UserProofs() {
               </p>
               <a
                 href="/user/dashboard"
-                className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] text-white rounded-lg hover:opacity-90 transition-colors"
               >
                 Go to My Modules
               </a>

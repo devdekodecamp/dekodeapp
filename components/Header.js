@@ -1,6 +1,6 @@
 'use client'
 
-import { Bell, Search, User } from 'lucide-react'
+import { Search, User } from 'lucide-react'
 
 export default function Header({ userName = 'User', role = 'user' }) {
   return (
@@ -18,13 +18,8 @@ export default function Header({ userName = 'User', role = 'user' }) {
         </div>
 
         <div className="flex items-center space-x-4">
-          <button className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors">
-            <Bell className="w-6 h-6" />
-            <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-          </button>
-
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] rounded-full flex items-center justify-center">
               <User className="w-6 h-6 text-white" />
             </div>
             <div className="hidden md:block">

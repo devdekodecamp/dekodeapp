@@ -62,7 +62,7 @@ export default function Sidebar({ role = 'user' }) {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-indigo-600 text-white"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] text-white hover:opacity-90"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -76,7 +76,7 @@ export default function Sidebar({ role = 'user' }) {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-gray-200">
-            <h1 className="text-2xl font-bold text-indigo-600">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] bg-clip-text text-transparent">
               {role === 'admin' ? 'Admin' : 'User'} Dashboard
             </h1>
           </div>
@@ -92,7 +92,7 @@ export default function Sidebar({ role = 'user' }) {
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                     isActive(item.href)
-                      ? 'bg-indigo-600 text-white'
+                      ? 'bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] text-white'
                       : 'text-gray-700 hover:bg-gray-100'
                   }`}
                 >

@@ -150,7 +150,20 @@ export default function WeekCard({ week }) {
               <h3 className="text-lg font-semibold text-gray-900 mb-1">
                 {week.title}
               </h3>
-              <p className="text-sm text-gray-500">Week {week.id}</p>
+              <p className="text-sm text-gray-500">
+                Week {week.id}
+                {week.startDate && (
+                  <>
+                    {" "}
+                    · Starts{" "}
+                    {new Date(week.startDate).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </>
+                )}
+              </p>
             </div>
             {getStatusBadge()}
           </div>
@@ -185,7 +198,7 @@ export default function WeekCard({ week }) {
               className={`w-full py-2 px-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 ${
                 week.completed
                   ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
-                  : "bg-indigo-600 text-white hover:bg-indigo-700"
+                  : "bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] text-white hover:opacity-90"
               }`}
             >
               <Upload className="w-5 h-5" />
@@ -293,7 +306,7 @@ export default function WeekCard({ week }) {
               <button
                 onClick={handleSubmitProof}
                 disabled={!proofFile || uploading}
-                className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                className="flex-1 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] hover:opacity-90 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {uploading ? (
                   <>

@@ -5,7 +5,7 @@ import { Search, User } from 'lucide-react'
 export default function Header({ userName = 'User', role = 'user' }) {
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
-      <div className="px-6 py-4 flex items-center justify-between">
+      <div className="py-4 flex items-center justify-between pl-16 pr-4 sm:px-6">
         <div className="flex items-center space-x-4 flex-1">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -17,7 +17,7 @@ export default function Header({ userName = 'User', role = 'user' }) {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] rounded-full flex items-center justify-center">
               <User className="w-6 h-6 text-white" />

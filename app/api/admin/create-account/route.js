@@ -1,47 +1,61 @@
-import { NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
-import { Resend } from 'resend'
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+import { Resend } from "resend";
 
-const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-const resendApiKey = process.env.RESEND_API_KEY || ''
+const supabaseUrl =
+  process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+const resendApiKey = process.env.RESEND_API_KEY || "";
 
 if (!supabaseUrl || !serviceRoleKey) {
   // eslint-disable-next-line no-console
-  console.warn('Supabase URL or service role key is not set for admin create-account route')
+  console.warn(
+    "Supabase URL or service role key is not set for admin create-account route"
+  );
 }
 
-const supabaseAdmin = serviceRoleKey ? createClient(supabaseUrl, serviceRoleKey) : null
-const resend = resendApiKey ? new Resend(resendApiKey) : null
+const supabaseAdmin = serviceRoleKey
+  ? createClient(supabaseUrl, serviceRoleKey)
+  : null;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 // Log initialization status (only once when module loads)
 if (!resendApiKey) {
   // eslint-disable-next-line no-console
-  console.warn('[CREATE ACCOUNT] RESEND_API_KEY is not set in environment variables')
+  console.warn(
+    "[CREATE ACCOUNT] RESEND_API_KEY is not set in environment variables"
+  );
 } else {
   // eslint-disable-next-line no-console
-  console.log('[CREATE ACCOUNT] Resend client initialized successfully')
+  console.log("[CREATE ACCOUNT] Resend client initialized successfully");
 }
 
 export async function POST(request) {
   // eslint-disable-next-line no-console
-  console.log('[CREATE ACCOUNT] POST request received')
-  
+  console.log("[CREATE ACCOUNT] POST request received");
+
   try {
     if (!supabaseAdmin) {
       return NextResponse.json(
-        { error: 'Supabase admin client is not configured on the server' },
-        { status: 500 },
-      )
+        { error: "Supabase admin client is not configured on the server" },
+        { status: 500 }
+      );
     }
 
-    const { email, password, name, role = 'user' } = await request.json()
-    
+    const { email, password, name, role = "user" } = await request.json();
+
     // eslint-disable-next-line no-console
-    console.log('[CREATE ACCOUNT] Creating account for:', { email, name, role })
+    console.log("[CREATE ACCOUNT] Creating account for:", {
+      email,
+      name,
+      role,
+    });
 
     if (!email || !password || !name) {
-      return NextResponse.json({ error: 'Name, email and password are required' }, { status: 400 })
+      return NextResponse.json(
+        { error: "Name, email and password are required" },
+        { status: 400 }
+      );
     }
 
     const { data, error } = await supabaseAdmin.auth.admin.createUser({
@@ -52,53 +66,61 @@ export async function POST(request) {
         name,
         role,
       },
-    })
+    });
 
     if (error || !data?.user) {
       return NextResponse.json(
-        { error: error?.message || 'Failed to create user in Supabase' },
-        { status: 400 },
-      )
+        { error: error?.message || "Failed to create user in Supabase" },
+        { status: 400 }
+      );
     }
 
-    const user = data.user
+    const user = data.user;
 
     // Optionally mirror basic info into a public `profiles` table if it exists.
     // This will no-op if the table is missing (e.g. error code 42P01).
     try {
-      await supabaseAdmin
-        .from('profiles')
-        .upsert(
-          {
-            id: user.id,
-            email: user.email,
-            name,
-            role,
-          },
-          { onConflict: 'id' },
-        )
+      await supabaseAdmin.from("profiles").upsert(
+        {
+          id: user.id,
+          email: user.email,
+          name,
+          role,
+        },
+        { onConflict: "id" }
+      );
     } catch (profileErr) {
       // eslint-disable-next-line no-console
-      console.warn('Failed to upsert into profiles table (this may be expected if it does not exist):', profileErr)
+      console.warn(
+        "Failed to upsert into profiles table (this may be expected if it does not exist):",
+        profileErr
+      );
     }
 
     // Send welcome email with login credentials
-    let emailSent = false
-    let emailErrorMessage = null
-    
+    let emailSent = false;
+    let emailErrorMessage = null;
+
     // eslint-disable-next-line no-console
-    console.log('[CREATE ACCOUNT] Attempting to send email. Resend client exists:', !!resend)
+    console.log(
+      "[CREATE ACCOUNT] Attempting to send email. Resend client exists:",
+      !!resend
+    );
     // eslint-disable-next-line no-console
-    console.log('[CREATE ACCOUNT] RESEND_API_KEY exists:', !!resendApiKey)
-    
+    console.log("[CREATE ACCOUNT] RESEND_API_KEY exists:", !!resendApiKey);
+
     if (resend) {
       try {
         // Get the base URL for the login page
-        const loginUrl = "https://app.dekodecamp.com"
+        const loginUrl = "https://app.dekodecamp.com";
 
         // eslint-disable-next-line no-console
-          console.log('[CREATE ACCOUNT] Sending email to:', email, 'from noreply@dekodecamp.com')
-        
+        console.log(
+          "[CREATE ACCOUNT] Sending email to:",
+          email,
+          "from noreply@dekodecamp.com"
+        );
+
         // Create plain text version for better deliverability
         const textVersion = `
 Welcome, ${name}!
@@ -116,13 +138,13 @@ If you have any questions, please contact support at support@dekodecamp.com.
 
 Best regards,
 The Dekode Camp Team
-        `.trim()
+        `.trim();
 
         const emailResult = await resend.emails.send({
-          from: 'Dekode Camp <noreply@dekodecamp.com>',
+          from: "Dekode Camp <noreply@dekodecamp.com>",
           to: [email],
-          subject: 'Welcome to Dekode Camp - Your Account Has Been Created',
-          replyTo: 'support@dekodecamp.com',
+          subject: "Welcome to Dekode Camp - Your Account Has Been Created",
+          replyTo: "support@dekodecamp.com",
           text: textVersion,
           html: `
             <!DOCTYPE html>
@@ -215,29 +237,45 @@ The Dekode Camp Team
             </body>
             </html>
           `,
-        })
-        
+        });
+
         // eslint-disable-next-line no-console
-        console.log('[CREATE ACCOUNT] Email sent successfully:', JSON.stringify(emailResult, null, 2))
+        console.log(
+          "[CREATE ACCOUNT] Email sent successfully:",
+          JSON.stringify(emailResult, null, 2)
+        );
         // eslint-disable-next-line no-console
-        console.log('[CREATE ACCOUNT] Email ID:', emailResult?.data?.id)
-        emailSent = true
+        console.log("[CREATE ACCOUNT] Email ID:", emailResult?.data?.id);
+        emailSent = true;
       } catch (emailError) {
         // eslint-disable-next-line no-console
-        console.error('[CREATE ACCOUNT] Failed to send welcome email:', emailError)
+        console.error(
+          "[CREATE ACCOUNT] Failed to send welcome email:",
+          emailError
+        );
         // eslint-disable-next-line no-console
-        console.error('[CREATE ACCOUNT] Email error details:', JSON.stringify(emailError, null, 2))
+        console.error(
+          "[CREATE ACCOUNT] Email error details:",
+          JSON.stringify(emailError, null, 2)
+        );
         // Don't fail the request if email fails - account was created successfully
-        emailErrorMessage = emailError?.message || 'Email send failed'
+        emailErrorMessage = emailError?.message || "Email send failed";
       }
     } else {
       // eslint-disable-next-line no-console
-      console.warn('[CREATE ACCOUNT] Resend API key is missing; welcome email was not sent')
-      emailErrorMessage = 'RESEND_API_KEY not configured'
+      console.warn(
+        "[CREATE ACCOUNT] Resend API key is missing; welcome email was not sent"
+      );
+      emailErrorMessage = "RESEND_API_KEY not configured";
     }
-    
+
     // eslint-disable-next-line no-console
-    console.log('[CREATE ACCOUNT] Account creation complete. Email sent:', emailSent, 'Error:', emailErrorMessage)
+    console.log(
+      "[CREATE ACCOUNT] Account creation complete. Email sent:",
+      emailSent,
+      "Error:",
+      emailErrorMessage
+    );
 
     return NextResponse.json(
       {
@@ -248,11 +286,14 @@ The Dekode Camp Team
         emailSent,
         emailError: emailErrorMessage,
       },
-      { status: 201 },
-    )
+      { status: 201 }
+    );
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error('Admin create account error', err)
-    return NextResponse.json({ error: 'Unexpected error while creating account' }, { status: 500 })
+    console.error("Admin create account error", err);
+    return NextResponse.json(
+      { error: "Unexpected error while creating account" },
+      { status: 500 }
+    );
   }
 }

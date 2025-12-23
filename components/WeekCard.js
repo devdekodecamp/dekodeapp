@@ -202,7 +202,7 @@ export default function WeekCard({ week }) {
               }`}
             >
               <Upload className="w-5 h-5" />
-              <span>{week.completed ? "Update Proof" : "Submit Proof"}</span>
+              <span>{week.completed ? "Update Task" : "Submit Task"}</span>
             </button>
           )}
         </div>

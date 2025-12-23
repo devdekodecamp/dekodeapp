@@ -125,7 +125,7 @@ export async function POST(request) {
         const textVersion = `
 Welcome, ${name}!
 
-Your account has been successfully created for Dekode Camp. You can now access the platform using the credentials below:
+Your account has been successfully created for DeKode Camp. You can now access the platform using the credentials below:
 
 Email: ${email}
 Temporary Password: ${password}
@@ -134,17 +134,17 @@ Login URL: ${loginUrl}
 
 IMPORTANT: Please change your temporary password after logging in for security purposes.
 
-If you have any questions, please contact support at support@dekodecamp.com.
+If you have any questions, please contact support at hello@dekodecamp.com.
 
 Best regards,
-The Dekode Camp Team
+The DeKode Camp Team
         `.trim();
 
         const emailResult = await resend.emails.send({
-          from: "Dekode Camp <noreply@dekodecamp.com>",
+          from: "DeKode Camp <noreply@dekodecamp.com>",
           to: [email],
-          subject: "Welcome to Dekode Camp - Your Account Has Been Created",
-          replyTo: "support@dekodecamp.com",
+          subject: "Welcome to DeKode Camp - Your Account Has Been Created",
+          replyTo: "hello@dekodecamp.com",
           text: textVersion,
           html: `
             <!DOCTYPE html>
@@ -161,7 +161,7 @@ The Dekode Camp Team
                       <!-- Header -->
                       <tr>
                         <td style="padding: 40px 40px 30px; background-color: #4F46E5; text-align: center;">
-                          <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Welcome to Dekode Camp</h1>
+                          <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">Welcome to DeKode Camp</h1>
                         </td>
                       </tr>
                       
@@ -173,7 +173,7 @@ The Dekode Camp Team
                           </p>
                           
                           <p style="margin: 0 0 30px; color: #374151; font-size: 16px; line-height: 1.6;">
-                            Your account has been successfully created. You can now access the Dekode Camp platform using the credentials below:
+                            Your account has been successfully created. You can now access the DeKode Camp platform using the credentials below:
                           </p>
                           
                           <!-- Credentials Box -->
@@ -214,7 +214,7 @@ The Dekode Camp Team
                           
                           <p style="margin: 20px 0 0; color: #111827; font-size: 16px; line-height: 1.6;">
                             Best regards,<br>
-                            <strong>The DekodeCamp Team</strong>
+                            <strong>The DeKode Camp Team</strong>
                           </p>
                         </td>
                       </tr>
@@ -226,7 +226,7 @@ The Dekode Camp Team
                             This is an automated message. Please do not reply directly to this email.
                           </p>
                           <p style="margin: 0; color: #9ca3af; font-size: 12px;">
-                            © ${new Date().getFullYear()} DekodeCamp. All rights reserved.
+                            © ${new Date().getFullYear()} DeKode Camp. All rights reserved.
                           </p>
                         </td>
                       </tr>

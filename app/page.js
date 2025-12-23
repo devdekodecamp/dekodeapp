@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { LogIn, Mail, Lock } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -123,8 +124,14 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#e01414] via-[#760da3] to-[#008cff] rounded-full mb-4">
-            <LogIn className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-24 h-24 mb-4">
+            <Image
+              src="/DeKodeSocialMedia_3Logo.svg"
+              alt="Dekode Camp Logo"
+              width={96}
+              height={96}
+              className="w-24 h-24"
+            />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Welcome Back

@@ -141,7 +141,7 @@ The DeKode Camp Team
         `.trim();
 
         const emailResult = await resend.emails.send({
-          from: "DeKode Camp <noreply@dekodecamp.com>",
+          from: "DeKode Camp <hello@dekodecamp.com>",
           to: [email],
           subject: "Welcome to DeKode Camp - Your Account Has Been Created",
           replyTo: "hello@dekodecamp.com",

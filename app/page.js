@@ -210,7 +210,7 @@ export default function LoginPage() {
               "Sign In"
             )}
           </button>
-        </form>ne
+        </form>
       </div>
     </div>
   );

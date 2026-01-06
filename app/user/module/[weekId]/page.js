@@ -138,7 +138,7 @@ export default function ModuleDetailPage() {
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             {module.thumbnailUrl && (
-              <div className="w-full h-64 bg-gray-100 overflow-hidden">
+              <div className="w-full aspect-[3/1] bg-gray-100 overflow-hidden">
                 <img
                   src={module.thumbnailUrl}
                   alt={`Thumbnail for ${module.title}`}

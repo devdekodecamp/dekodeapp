@@ -136,7 +136,7 @@ export default function WeekCard({ week }) {
     <>
       <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-shadow">
         {week.thumbnailUrl && (
-          <div className="w-full h-40 bg-gray-100 overflow-hidden">
+          <div className="w-full aspect-[3/1] bg-gray-100 overflow-hidden">
             <img
               src={week.thumbnailUrl}
               alt={`Thumbnail for ${week.title}`}

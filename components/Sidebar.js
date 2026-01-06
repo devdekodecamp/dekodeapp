@@ -49,7 +49,7 @@ export default function Sidebar({ role = "user" }) {
 
   const userMenuItems = [
     { href: "/user/dashboard", icon: Calendar, label: "My Modules" },
-    { href: "/user/proofs", icon: FileText, label: "My Proofs" },
+    { href: "/user/proofs", icon: FileText, label: "My Tasks" },
     { href: "/user/settings", icon: User, label: "Settings" },
   ];
 
